@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=IntelliJ IDEA
+Comment=JetBrains IDE
+Icon=/opt/idea/bin/idea.png
+Exec=/opt/idea/bin/idea.sh
+Terminal=false
+Categories=Development;

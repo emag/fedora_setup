@@ -1,0 +1,12 @@
+- hosts: localhost
+  connection: local
+  become: yes
+  tasks:
+    - name: add VirtualBox repo
+      command: dnf config-manager --add-repo http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
+
+    - name: install VirtualBox
+      dnf: name=VirtualBox-5.0 state=installed
+
+    - name: vboxdrv setup
+      shell: "KERN_DIR=/usr/src/kernels/`ls -t /usr/src/kernels/ | head -1` /usr/lib/virtualbox/vboxdrv.sh setup"

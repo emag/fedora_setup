@@ -1,0 +1,63 @@
+- hosts: localhost
+  connection: local
+  become: yes
+  tasks:
+    - name: install libselinux-python
+      shell: dnf -y install libselinux-python creates=/usr/lib64/python2.7/site-packages/selinux
+
+    - name: use fastest mirror
+      lineinfile: dest=/etc/dnf/dnf.conf line="fastestmirror=true"
+
+    - name: clean dnf cache
+      shell: dnf clean all
+
+    - name: install python-dnf
+      shell: dnf -y install python-dnf creates=/usr/bin/dnf-3
+
+    - name: update packages
+      dnf: name=* state=latest
+
+#    - name: add dropbox repo
+#      copy: src=dropbox.repo dest=/etc/yum.repos.d/dropbox.repo
+
+    - name: add google-chrome repo
+      copy: src=google-chrome.repo dest=/etc/yum.repos.d/google-chrome.repo
+
+    - name: add rpmfusion repo
+      dnf: name=http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm
+
+    - name: install packages
+      dnf: name={{item}} state=latest
+      with_items:
+        - docker
+        - https://www.dropbox.com/download?dl=packages/fedora/nautilus-dropbox-2015.10.28-1.fedora.x86_64.rpm
+        - gcc
+        - git
+        - google-chrome-stable
+        - kernel-devel
+        - make
+        - https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.rpm
+        - vim
+        - vlc
+        - wget
+
+    - name: install atom
+      shell: wget -O /tmp/atom.rpm https://atom.io/download/rpm && dnf -y install /tmp/atom.rpm creates=/usr/share/atom/version
+
+    - name: download idea
+      get_url: url=https://download.jetbrains.com/idea/ideaIU-15.0.3.tar.gz dest=/tmp/ideaIU-15.0.3.tar.gz
+
+    - name: unarchive idea
+      unarchive: src=/tmp/ideaIU-15.0.3.tar.gz dest=/opt/ copy=no
+
+    - name: create sym link idea
+      shell: ln -s /opt/`ls /opt/ | grep idea` /opt/idea creates=/opt/idea
+
+    - name: change idea vmoptions
+      copy: src=idea64.vmoptions dest=/opt/idea/bin/idea64.vmoptions
+
+    - name: add idea icon
+      copy: src=idea.desktop dest=/usr/share/applications/idea.desktop
+
+    - name: start and enable docker
+      service: name=docker state=started enabled=yes
