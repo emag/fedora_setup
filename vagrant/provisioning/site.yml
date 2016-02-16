@@ -12,7 +12,7 @@
       shell: dnf clean all
 
     - name: install python-dnf
-      shell: dnf -y install python-dnf creates=/usr/bin/dnf-3
+      shell: dnf -y install python-dnf
 
     - name: update packages
       dnf: name=* state=latest
