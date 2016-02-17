@@ -62,3 +62,6 @@
 
     - name: start and enable docker
       service: name=docker state=started enabled=yes
+
+    - name: change my default shell to zsh
+      user: name=tanabe shell=/bin/zsh
