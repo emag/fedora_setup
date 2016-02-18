@@ -27,15 +27,18 @@
       dnf: name=http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm
 
     - name: install packages
-      dnf: name={{item}} state=latest
+      dnf: name={{item}} enablerepo=fedora-debuginfo state=latest
       with_items:
         - docker
         - https://www.dropbox.com/download?dl=packages/fedora/nautilus-dropbox-2015.10.28-1.fedora.x86_64.rpm
         - gcc
         - git
         - google-chrome-stable
+        - java-1.8.0-openjdk-devel
+        - java-1.8.0-openjdk-debuginfo
         - kernel-devel
         - make
+        - unzip
         - https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.rpm
         - vim
         - vlc
@@ -65,3 +68,24 @@
 
     - name: change my default shell to zsh
       user: name=tanabe shell=/bin/zsh
+
+    # https://gist.github.com/emilio2hd/c910661bff37246bee17
+    - name: check if sdkman is installed
+      shell: test -d /home/tanabe/.sdkman && echo "yes" || echo "no"
+      register: is_sdkman_installed
+
+    - name: install SDKMAN
+      when: is_sdkman_installed.stdout == "no"
+      shell: curl -s get.sdkman.io | zsh executable=/bin/zsh
+      become_user: tanabe
+      become: no
+
+    - name: install maven
+      shell: zsh -lc "source ~/.zshrc && yes | sdk install maven"
+      become_user: tanabe
+      become: no
+
+    - name: install gradle
+      command: zsh -lc "source ~/.zshrc && yes | sdk install gradle"
+      become_user: tanabe
+      become: no
