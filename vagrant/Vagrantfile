@@ -7,7 +7,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision :shell, :inline => "useradd tanabe && echo higehige | passwd --stdin tanabe && usermod tanabe -a -G wheel"
 
-  # config.vm.provision :ansible_local do |ansible|
-  #   ansible.playbook = "./provisioning/site.yml"
-  # end
+  config.vm.provision :ansible_local do |ansible|
+    ansible.playbook = "./provisioning/site.yml"
+  end
 end
