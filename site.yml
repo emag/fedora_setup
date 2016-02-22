@@ -18,10 +18,10 @@
       dnf: name=* state=latest
 
 #    - name: add dropbox repo
-#      copy: src=dropbox.repo dest=/etc/yum.repos.d/dropbox.repo
+#      copy: src=./repos/dropbox.repo dest=/etc/yum.repos.d/dropbox.repo
 
     - name: add google-chrome repo
-      copy: src=google-chrome.repo dest=/etc/yum.repos.d/google-chrome.repo
+      copy: src=./repos/google-chrome.repo dest=/etc/yum.repos.d/google-chrome.repo
 
     - name: add rpmfusion repo
       dnf: name=http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm
@@ -58,10 +58,10 @@
       shell: ln -s /opt/`ls /opt/ | grep idea` /opt/idea creates=/opt/idea
 
     - name: change idea vmoptions
-      copy: src=idea64.vmoptions dest=/opt/idea/bin/idea64.vmoptions
+      copy: src=./idea/idea64.vmoptions dest=/opt/idea/bin/idea64.vmoptions
 
     - name: add idea icon
-      copy: src=idea.desktop dest=/usr/share/applications/idea.desktop
+      copy: src=./idea/idea.desktop dest=/usr/share/applications/idea.desktop
 
     - name: start and enable docker
       service: name=docker state=started enabled=yes
@@ -77,15 +77,12 @@
     - name: install SDKMAN
       when: is_sdkman_installed.stdout == "no"
       shell: curl -s get.sdkman.io | zsh executable=/bin/zsh
-      become_user: tanabe
       become: no
 
     - name: install maven
       shell: zsh -lc "source ~/.zshrc && yes | sdk install maven"
-      become_user: tanabe
       become: no
 
     - name: install gradle
       command: zsh -lc "source ~/.zshrc && yes | sdk install gradle"
-      become_user: tanabe
       become: no
