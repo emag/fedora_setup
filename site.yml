@@ -26,11 +26,15 @@
     - name: add rpmfusion repo
       dnf: name=http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm
 
+    - name: add rpmfusion repo
+      dnf: name=http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
+
     - name: install packages
       dnf: name={{item}} enablerepo=fedora-debuginfo state=latest
       with_items:
         - docker
         - https://www.dropbox.com/download?dl=packages/fedora/nautilus-dropbox-2015.10.28-1.fedora.x86_64.rpm
+        - flash-plugin
         - gcc
         - git
         - google-chrome-stable
