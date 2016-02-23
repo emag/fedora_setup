@@ -34,6 +34,7 @@
         - gcc
         - git
         - google-chrome-stable
+        - hexchat
         - java-1.8.0-openjdk-devel
         - java-1.8.0-openjdk-debuginfo
         - jq
