@@ -1,0 +1,48 @@
+" オートインデント
+set cindent
+
+" tab関連
+set expandtab "タブの代わりに空白文字挿入
+set ts=2 sw=2 sts=0 "タブは半角2文字分のスペース
+
+" ファイルを開いたときに、カレントディレクトリを編集ファイルディレクトリに変更
+augroup grlcd
+  autocmd!
+  autocmd BufEnter * lcd %:p:h
+augroup END
+
+" mdy で日付を挿入する
+inoreabbrev <expr> mdy strftime("%Y-%m-%d")
+
+" 線を描画する短縮入力
+inoreabbrev <expr> dl* repeat('*', 80 - col('.'))
+inoreabbrev <expr> dl= repeat('=', 80 - col('.'))
+inoreabbrev <expr> dl- repeat('-', 80 - col('.'))
+inoreabbrev <expr> dl# repeat('#', 80 - col('.'))
+
+" backup ディレクトリに、日付時刻つきでバックアップを作成する
+command! Backup execute 'w! ~/Backups/'. expand('%:t'). '_'. strftime('%Y%m%d_%H%M%S')
+
+" Emacs 風のキーバインド
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-e> <End>
+inoremap <C-a> <Home>
+inoremap <C-h> <Backspace>
+inoremap <C-d> <Del>
+" カーソル位置の行をウィンドウの中央に来るようにスクロール
+inoremap <C-l> <C-o>zz
+" カーソル以前の文字を削除
+inoremap <C-u> <C-o>d0
+" カーソル以降の文字を削除
+inoremap <C-k> <C-o>D
+
+" カッコやクオートなどを入力した際に左に自動で移動
+inoremap {} {}<Left>
+inoremap [] []<Left>
+inoremap () ()<Left>
+inoremap "" ""<Left>
+inoremap '' ''<Left>
+inoremap <> <><Left>

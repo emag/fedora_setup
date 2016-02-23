@@ -69,6 +69,23 @@
     - name: change my default shell to zsh
       user: name=tanabe shell=/bin/zsh
 
+    - name: Check if zplug is installed
+      shell: test -e /home/tanabe/.zplug/zplug && echo "yes" || echo "no"
+      register: is_zplug_installed
+
+    - name: Install zplug
+      when: is_zplug_installed.stdout == "no"
+      shell: curl -fLo ~/.zplug/zplug --create-dirs git.io/zplug
+      become: no
+
+    - name: Copy .zshrc
+      copy: src=./.zshrc dest=/home/tanabe/.zshrc
+      become: no
+
+    - name: Copy zsh settings
+      copy: src=./.zsh dest=/home/tanabe
+      become: no
+
     # https://gist.github.com/emilio2hd/c910661bff37246bee17
     - name: check if sdkman is installed
       shell: test -d /home/tanabe/.sdkman && echo "yes" || echo "no"
@@ -80,9 +97,34 @@
       become: no
 
     - name: install maven
-      shell: zsh -lc "source ~/.zshrc && yes | sdk install maven"
+      shell: source ~/.zshrc && yes | sdk install maven
       become: no
 
     - name: install gradle
-      command: zsh -lc "source ~/.zshrc && yes | sdk install gradle"
+      shell: source ~/.zshrc && yes | sdk install gradle
+      become: no
+
+    - name: Check if NeoBundle is installed
+      shell: test -d /home/tanabe/.vim/bundle && echo "yes" || echo "no"
+      register: is_neobundle_installed
+
+    - name: Install NeoBundle
+      when: is_neobundle_installed.stdout == "no"
+      shell: curl -s https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | zsh executable=/bin/zsh
+      become: no
+
+    - name: Copy .vimrc
+      copy: src=./.vimrc dest=/home/tanabe/.vimrc
+      become: no
+
+    - name: Copy vim settings
+      copy: src=./.vim dest=/home/tanabe
+      become: no
+
+    - name: Copy .gitconfig
+      copy: src=./.gitconfig dest=/home/tanabe/.gitconfig
+      become: no
+
+    - name: Copy .inputrc
+      copy: src=./.inputrc dest=/home/tanabe/.inputrc
       become: no
