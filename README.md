@@ -15,6 +15,12 @@ $ shutdown -r now
 
 // TODO More automation
 
+### Change host name
+
+``` sh
+$ hostnamectl set-hostname <hostname> --static
+```
+
 ### Install VirtualBox
 
 // TODO
