@@ -74,6 +74,15 @@
     - name: start and enable docker
       service: name=docker state=started enabled=yes
 
+    - name: Download peco
+      get_url: url=https://github.com/peco/peco/releases/download/v0.3.5/peco_linux_amd64.tar.gz dest=/tmp/peco.tar.gz
+
+    - name: Unarchive peco
+      unarchive: src=/tmp/peco.tar.gz dest=/tmp/ copy=no
+
+    - name: Copy peco binary
+      command: cp /tmp/peco_linux_amd64/peco /usr/local/bin/ creates=/usr/local/bin/peco
+
     - name: change my default shell to zsh
       user: name=tanabe shell=/bin/zsh
 
