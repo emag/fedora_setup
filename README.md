@@ -21,6 +21,12 @@ $ shutdown -r now
 $ hostnamectl set-hostname <hostname> --static
 ```
 
+### Update user dirs to English
+
+``` sh
+LANG=C xdg-user-dirs-gtk-update
+```
+
 ### Install VirtualBox
 
 // TODO

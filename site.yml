@@ -157,11 +157,3 @@
     - name: Show date
       command: gsettings set org.gnome.desktop.interface clock-show-date true
       become: no
-
-    - name: Update user dirs names to English
-      shell: LANG=C xdg-user-dirs-update --force
-      become: no
-
-    - name: Remove Japansese folder
-      command: rm -fr 音楽 画像 公開 ダウンロード テンプレート デスクトップ ドキュメント ビデオ
-      become: no
