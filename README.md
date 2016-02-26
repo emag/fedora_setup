@@ -51,6 +51,15 @@ $ dropbox start -i
 
 ## Test with Vagrant
 
+If you are behind a proxy, specify your proxy host to `shell.args` in Vagrantfile.
+
+``` ruby
+config.vm.provision :shell do |shell|
+  shell.path = "./vagrant_proxy.sh"
+  shell.args = "http://proxy.example.com"
+end
+```
+
 Password: higehige
 
 ``` sh
