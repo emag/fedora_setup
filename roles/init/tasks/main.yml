@@ -1,0 +1,14 @@
+- name: Install libselinux-python
+  command: dnf -y install libselinux-python creates=/usr/lib64/python2.7/site-packages/selinux
+
+- name: Use fastest mirror
+  lineinfile: dest=/etc/dnf/dnf.conf line="fastestmirror=true"
+
+- name: Clean dnf cache
+  command: dnf clean all
+
+- name: Install python-dnf
+  command: dnf -y install python-dnf creates=/usr/bin/dnf-2
+
+- name: Update packages
+  dnf: name=* state=latest

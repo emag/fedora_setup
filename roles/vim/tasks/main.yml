@@ -1,0 +1,17 @@
+- name: Check if NeoBundle is installed
+  shell: test -d ~/.vim/bundle && echo "yes" || echo "no"
+  register: is_neobundle_installed
+  become: no
+
+- name: Install NeoBundle
+  when: is_neobundle_installed.stdout == "no"
+  shell: curl -s https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | zsh executable=/bin/zsh
+  become: no
+
+- name: Copy .vimrc
+  copy: src=./.vimrc dest=~/.vimrc
+  become: no
+
+- name: Copy vim settings
+  copy: src=./.vim dest=~
+  become: no

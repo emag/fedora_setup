@@ -1,0 +1,23 @@
+- name: Download idea
+  get_url: url=https://download.jetbrains.com/idea/ideaIU-15.0.3.tar.gz dest=/tmp/ideaIU-15.0.3.tar.gz
+
+- name: Unarchive idea
+  unarchive: src=/tmp/ideaIU-15.0.3.tar.gz dest=/opt/ copy=no
+
+- name: Create sym link idea
+  shell: ln -s /opt/`ls /opt/ | grep idea` /opt/idea creates=/opt/idea
+
+- name: Change idea vmoptions
+  copy: src=./idea/idea64.vmoptions dest=/opt/idea/bin/idea64.vmoptions
+
+- name: Add idea icon
+  copy: src=./idea/idea.desktop dest=/usr/share/applications/idea.desktop
+
+- name: Download peco
+  get_url: url=https://github.com/peco/peco/releases/download/v0.3.5/peco_linux_amd64.tar.gz dest=/tmp/peco.tar.gz
+
+- name: Unarchive peco
+  unarchive: src=/tmp/peco.tar.gz dest=/tmp/ copy=no
+
+- name: Copy peco binary
+  command: cp /tmp/peco_linux_amd64/peco /usr/local/bin/ creates=/usr/local/bin/peco

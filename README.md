@@ -21,15 +21,11 @@ $ shutdown -r now
 $ hostnamectl set-hostname <hostname> --static
 ```
 
-### Update user dirs to English
-
-``` sh
-LANG=C xdg-user-dirs-gtk-update
-```
-
 ### Install VirtualBox
 
-// TODO
+``` sh
+$ ansible-playbook fedora/setup/virtualbox.yml --ask-become-pass
+```
 
 ### Switch　Input source key
 
