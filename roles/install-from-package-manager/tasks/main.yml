@@ -31,6 +31,7 @@
     - jq
     - kernel-devel
     - make
+    - http://download.skype.com/linux/skype-4.3.0.37-fedora.i586.rpm
     - unzip
     - https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.rpm
     - vim
