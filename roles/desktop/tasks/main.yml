@@ -1,0 +1,19 @@
+- name: No caps
+  command: gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+  become: no
+
+- name: Show log out
+  command: gsettings set org.gnome.shell always-show-log-out true
+  become: no
+
+- name: Show date
+  command: gsettings set org.gnome.desktop.interface clock-show-date true
+  become: no
+
+- name: Update user dirs names to English
+  shell: LANG=C xdg-user-dirs-update --force
+  become: no
+
+- name: Remove Japansese folder
+  command: rm -fr 音楽 画像 公開 ダウンロード テンプレート デスクトップ ドキュメント ビデオ
+  become: no

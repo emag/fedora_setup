@@ -1,0 +1,18 @@
+# https://gist.github.com/emilio2hd/c910661bff37246bee17
+- name: Check if sdkman is installed
+  shell: test -d ~/.sdkman && echo "yes" || echo "no"
+  register: is_sdkman_installed
+  become: no
+
+- name: Install SDKMAN
+  when: is_sdkman_installed.stdout == "no"
+  shell: curl -s get.sdkman.io | zsh executable=/bin/zsh
+  become: no
+
+- name: Install maven
+  shell: source ~/.zshrc && yes | sdk install maven
+  become: no
+
+- name: Install gradle
+  shell: source ~/.zshrc && yes | sdk install gradle
+  become: no

@@ -1,0 +1,7 @@
+- name: Copy .gitconfig
+  copy: src=./.gitconfig dest=~/.gitconfig
+  become: no
+
+- name: Copy .inputrc
+  copy: src=./.inputrc dest=~/.inputrc
+  become: no

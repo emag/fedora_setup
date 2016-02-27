@@ -1,0 +1,39 @@
+# - name: add dropbox repo
+#  copy: src=./repos/dropbox.repo dest=/etc/yum.repos.d/dropbox.repo
+
+- name: Add google-chrome repo
+  copy: src=./repos/google-chrome.repo dest=/etc/yum.repos.d/google-chrome.repo
+
+- name: Add rpmfusion repo
+  dnf: name=http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm
+
+- name: Add adobe repo
+  dnf: name=http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
+
+- name: Download atom
+  command: wget -O /tmp/atom.rpm https://atom.io/download/rpm creates=/tmp/atom.rpm
+
+- name: Install packages
+  dnf: name={{item}} enablerepo=fedora-debuginfo state=latest
+  with_items:
+    - /tmp/atom.rpm
+    - docker
+    - https://www.dropbox.com/download?dl=packages/fedora/nautilus-dropbox-2015.10.28-1.fedora.x86_64.rpm
+    - flash-plugin
+    - gcc
+    - git
+    - gnome-tweak-tool
+    - google-chrome-stable
+    - hexchat
+    - ibus-mozc
+    - java-1.8.0-openjdk-devel
+    - java-1.8.0-openjdk-debuginfo
+    - jq
+    - kernel-devel
+    - make
+    - unzip
+    - https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.rpm
+    - vim
+    - vlc
+    - wget
+    - zsh

@@ -1,0 +1,20 @@
+- name: Change my default shell to zsh
+  user: name=tanabe shell=/bin/zsh
+
+- name: Check if zplug is installed
+  shell: test -e ~/.zplug/zplug && echo "yes" || echo "no"
+  register: is_zplug_installed
+  become: no
+
+- name: Install zplug
+  when: is_zplug_installed.stdout == "no"
+  shell: curl -fLo ~/.zplug/zplug --create-dirs git.io/zplug
+  become: no
+
+- name: Copy .zshrc
+  copy: src=./.zshrc dest=~/.zshrc
+  become: no
+
+- name: Copy zsh settings
+  copy: src=./.zsh dest=~
+  become: no
