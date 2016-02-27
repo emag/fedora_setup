@@ -24,7 +24,7 @@ $ hostnamectl set-hostname <hostname> --static
 ### Install VirtualBox
 
 ``` sh
-$ ansible-playbook fedora/setup/virtualbox.yml --ask-become-pass
+$ ansible-playbook fedora_setup/virtualbox.yml --ask-become-pass
 ```
 
 ### Switch　Input source key
