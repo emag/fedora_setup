@@ -43,7 +43,26 @@ $ dropbox start -i
 
 ### Expand fedora-root size
 
-// TODO
+#### lvreduce fedora-home(e.g. 300GB)
+
+``` sh
+# umout /home
+# fsck.ext4 -f /dev/mapper/fedora-home
+# resize2fs /dev/mapper/fedora-home 300G
+# lvreduce -L 300G /dev/mapper/fedora-home
+# mount -t ext4 /dev/mapper/fedora-home /home
+```
+
+#### lvextend fedora-home(e.g. 100GB)
+
+``` sh
+# lvextend -L 100G /dev/mapper/fedora-root
+# resize2fs /dev/mapper/fedora-root
+```
+
+#### Refs
+
+http://spring-mt.tumblr.com/post/18547526421/lvmでlvの拡張と削減を行う
 
 ## Test with Vagrant
 
