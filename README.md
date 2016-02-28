@@ -27,13 +27,13 @@ $ hostnamectl set-hostname <hostname> --static
 $ ansible-playbook fedora_setup/virtualbox.yml --ask-become-pass
 ```
 
-### Switch　Input source key
+### Switch Input source key
 
 設定 -> キーボード -> ショートカット -> タイピング
 
 ### Use Mozc
 
-設定 -> 地域と言語　-> 入力ソース [+] -> 日本語　-> 日本語(Mozc) -> 追加
+設定 -> 地域と言語 -> 入力ソース [+] -> 日本語 -> 日本語(Mozc) -> 追加
 
 ### Start Dropbox
 
