@@ -1,5 +1,5 @@
 - name: Change my default shell to zsh
-  user: name=tanabe shell=/bin/zsh
+  user: name={{username}} shell=/bin/zsh
 
 - name: Check if zplug is installed
   shell: test -e ~/.zplug/zplug && echo "yes" || echo "no"
