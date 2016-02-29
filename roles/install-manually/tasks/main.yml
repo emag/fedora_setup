@@ -21,3 +21,6 @@
 
 - name: Copy peco binary
   command: cp /tmp/peco_linux_amd64/peco /usr/local/bin/ creates=/usr/local/bin/peco
+
+- name: Install Leiningen
+  get_url: url=https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein dest=/usr/local/bin/lein mode=0755
