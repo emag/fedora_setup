@@ -1,0 +1,2 @@
+- name: Copy limits.conf
+  copy: src=./os/nproc_nofile.conf dest=/etc/security/limits.d/nproc_nofile.conf
