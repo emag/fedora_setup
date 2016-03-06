@@ -1,2 +1,11 @@
 - name: Copy limits.conf
   copy: src=./os/nproc_nofile.conf dest=/etc/security/limits.d/nproc_nofile.conf
+
+- name: Make my tuned settings dir
+  file: path=/etc/tuned/my-desktop state=directory
+
+- name: Copy my tuned.conf
+  copy: src=./os/tuned.conf dest=/etc/tuned/my-desktop/tuned.conf
+
+- name: Enable my tuned settings
+  command: tuned-adm profile my-desktop
