@@ -17,9 +17,6 @@
   copy: src=./idea/idea64.vmoptions dest=~/opt/idea/bin/idea64.vmoptions
   become: no
 
-- name: Add idea icon
-  copy: src=./idea/idea.desktop dest=/usr/share/applications/idea.desktop
-
 - name: Download peco
   get_url: url=https://github.com/peco/peco/releases/download/v0.3.5/peco_linux_amd64.tar.gz dest=/tmp/peco.tar.gz
 
