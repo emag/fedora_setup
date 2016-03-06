@@ -1,14 +1,21 @@
 - name: Download idea
-  get_url: url=https://download.jetbrains.com/idea/ideaIU-15.0.3.tar.gz dest=/tmp/ideaIU-15.0.3.tar.gz
+  get_url: url=https://download.jetbrains.com/idea/ideaIU-15.0.4.tar.gz dest=/tmp/ideaIU.tar.gz
+
+- name: Make opt directory has local installed applications
+  file: path=~/opt state=directory
+  become: no
 
 - name: Unarchive idea
-  unarchive: src=/tmp/ideaIU-15.0.3.tar.gz dest=/opt/ copy=no
+  unarchive: src=/tmp/ideaIU.tar.gz dest=~/opt/ copy=no
+  become: no
 
 - name: Create sym link idea
-  shell: ln -s /opt/`ls /opt/ | grep idea` /opt/idea creates=/opt/idea
+  shell: ln -s ~/opt/`ls ~/opt/ | grep idea` ~/opt/idea creates=/opt/idea
+  become: no
 
 - name: Change idea vmoptions
-  copy: src=./idea/idea64.vmoptions dest=/opt/idea/bin/idea64.vmoptions
+  copy: src=./idea/idea64.vmoptions dest=~/opt/idea/bin/idea64.vmoptions
+  become: no
 
 - name: Add idea icon
   copy: src=./idea/idea.desktop dest=/usr/share/applications/idea.desktop
