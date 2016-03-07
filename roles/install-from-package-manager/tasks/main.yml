@@ -28,6 +28,7 @@
     - ibus-mozc
     - java-1.8.0-openjdk-devel
     - java-1.8.0-openjdk-debuginfo
+    - java-1.8.0-openjdk-src
     - jq
     - kernel-devel
     - make
