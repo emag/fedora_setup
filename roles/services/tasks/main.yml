@@ -1,2 +1,5 @@
 - name: Start and Enable docker
   service: name=docker state=started enabled=yes
+
+- name: Start and Enable tuned
+  service: name=tuned state=started enabled=yes
