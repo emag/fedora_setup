@@ -9,3 +9,9 @@
 
 - name: Enable my tuned settings
   command: tuned-adm profile my-desktop
+
+- name: Run system activity accounting tool every 1 minutes
+  cron: name="Run sar every 1 min" job="/usr/lib64/sa/sa1 1 1" user="root"
+
+- name: Generate a daily summary of process accounting
+  cron: name="Daily performance summary" job="/usr/lib64/sa/sa2 -A" minute=53 hour=23 user="root"
