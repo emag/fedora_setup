@@ -27,6 +27,12 @@ $ hostnamectl set-hostname <hostname> --static
 $ ansible-playbook fedora_setup/virtualbox.yml --ask-become-pass
 ```
 
+### Update user dirs to English
+
+``` sh
+LANG=C xdg-user-dirs-gtk-update
+```
+
 ### Switch Input source key
 
 設定 -> キーボード -> ショートカット -> タイピング
