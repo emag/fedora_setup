@@ -33,6 +33,7 @@
 [core]
   quotepath = false
   editor = vim
+  pager = less -q -R
 [http]
   sslverify = false
 [merge]
