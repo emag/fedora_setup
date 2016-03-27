@@ -5,3 +5,11 @@
 - name: Copy .inputrc
   copy: src=./.inputrc dest=~/.inputrc
   become: no
+
+- name: Copy .vimperatorrc
+  copy: src=./.vimperatorrc dest=~/.vimperatorrc
+  become: no
+
+- name: Copy .vimperator directory
+  copy: src=./.vimperator dest=~
+  become: no
