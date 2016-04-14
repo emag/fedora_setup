@@ -21,6 +21,40 @@ $ shutdown -r now
 $ hostnamectl set-hostname <hostname> --static
 ```
 
+### Network
+
+``` sh
+# systemctl disable NetworkManager
+# systemctl stop NetworkManager
+# systemctl enable systemd-networkd
+# systemctl start systemd-networkd
+# systemctl enable systemd-resolved
+# systemctl start systemd-resolved
+# rm /etc/resolv.conf
+# ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
+# mkdir /etc/systemd/network
+# vi /etc/systemd/network/wired.network [1]
+# systemctl restart systemd-networkd
+```
+
+[1] Sample network configuration file(Static IP Address).
+
+``` sh
+$ cat /etc/systemd/network/wired.network
+[Match]
+Name=enp3s0
+
+[Network]
+Address=192.168.10.10/24
+Gateway=192.168.10.1
+DNS=192.168.100.10
+DNS=192.168.100.11
+```
+
+#### Refs
+
+http://xmodulo.com/switch-from-networkmanager-to-systemd-networkd.html
+
 ### Install VirtualBox
 
 ``` sh
