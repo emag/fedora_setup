@@ -10,6 +10,9 @@
 - name: Add adobe repo
   dnf: name=http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
 
+- name: Add nodejs repo
+  dnf: name=https://rpm.nodesource.com/pub_4.x/fc/23/x86_64/nodesource-release-fc23-1.noarch.rpm
+
 - name: Download atom
   command: wget -O /tmp/atom.rpm https://atom.io/download/rpm creates=/tmp/atom.rpm
 
@@ -32,6 +35,7 @@
     - jq
     - kernel-devel
     - make
+    - nodejs
     - nkf
     - http://download.skype.com/linux/skype-4.3.0.37-fedora.i586.rpm
     - sysstat
