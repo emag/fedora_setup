@@ -21,7 +21,17 @@ $ shutdown -r now
 $ hostnamectl set-hostname <hostname> --static
 ```
 
-### Network
+### Network(Static IP Address)
+
+You can choose NetworkManager or systemd-networkd.
+
+#### NetworkManager
+
+``` sh
+# nmcli connection modify enp3s0 ipv4.addresses "192.168.10.10/24" ipv4.gateway "192.168.10.1" ipv4.dns "192,168.100.10,192.168.100.11" ipv4.method manual
+```
+
+#### systemd-networkd
 
 ``` sh
 # systemctl disable NetworkManager
@@ -53,7 +63,8 @@ DNS=192.168.100.11
 
 #### Refs
 
-http://xmodulo.com/switch-from-networkmanager-to-systemd-networkd.html
+* http://www.unix-power.net/centos7/network.html
+* http://xmodulo.com/switch-from-networkmanager-to-systemd-networkd.html
 
 ### Install VirtualBox
 
