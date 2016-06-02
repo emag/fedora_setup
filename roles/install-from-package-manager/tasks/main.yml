@@ -1,6 +1,9 @@
 - name: Add adobe repo
   dnf: name=http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
 
+- name: Add docker repo
+  copy: src=./repos/docker.repo dest=/etc/yum.repos.d/docker.repo
+
 - name: Add dropbox repo
   copy: src=./repos/dropbox.repo dest=/etc/yum.repos.d/dropbox.repo
 
@@ -20,7 +23,7 @@
   dnf: name={{item}} enablerepo=fedora-debuginfo state=latest
   with_items:
     - /tmp/atom.rpm
-    - docker
+    - docker-engine
     - nautilus-dropbox
     - flash-plugin
     - gcc
