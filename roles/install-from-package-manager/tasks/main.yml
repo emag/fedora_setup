@@ -1,20 +1,20 @@
-# - name: add dropbox repo
-#  copy: src=./repos/dropbox.repo dest=/etc/yum.repos.d/dropbox.repo
+- name: Add adobe repo
+  dnf: name=http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
+
+# - name: Add dropbox repo
+#   copy: src=./repos/dropbox.repo dest=/etc/yum.repos.d/dropbox.repo
 
 - name: Add google-chrome repo
   copy: src=./repos/google-chrome.repo dest=/etc/yum.repos.d/google-chrome.repo
 
-- name: Add rpmfusion repo
-  dnf: name=http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm
-
-- name: Add adobe repo
-  dnf: name=http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
-
 - name: Add nodejs repo
   dnf: name=https://rpm.nodesource.com/pub_4.x/fc/23/x86_64/nodesource-release-fc23-1.noarch.rpm
 
+- name: Add rpmfusion repo
+  dnf: name=http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm
+
 - name: Download atom
-  command: wget -O /tmp/atom.rpm https://atom.io/download/rpm creates=/tmp/atom.rpm
+  get_url: url=https://atom.io/download/rpm dest=/tmp/atom.rpm
 
 - name: Install packages
   dnf: name={{item}} enablerepo=fedora-debuginfo state=latest
