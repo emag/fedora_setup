@@ -20,7 +20,7 @@
   get_url: url=https://atom.io/download/rpm dest=/tmp/atom.rpm
 
 - name: Install packages
-  dnf: name={{item}} enablerepo=fedora-debuginfo state=latest
+  dnf: name={{item}} enablerepo=updates-debuginfo state=latest
   with_items:
     - /tmp/atom.rpm
     - docker-engine
