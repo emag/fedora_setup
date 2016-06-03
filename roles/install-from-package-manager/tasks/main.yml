@@ -7,6 +7,9 @@
 - name: Add dropbox repo
   copy: src=./repos/dropbox.repo dest=/etc/yum.repos.d/dropbox.repo
 
+- name: Add fish repo
+  command: dnf config-manager --add-repo http://download.opensuse.org/repositories/shells:fish:release:2/Fedora_23/shells:fish:release:2.repo
+
 - name: Add google-chrome repo
   copy: src=./repos/google-chrome.repo dest=/etc/yum.repos.d/google-chrome.repo
 
@@ -25,6 +28,7 @@
     - /tmp/atom.rpm
     - docker-engine
     - nautilus-dropbox
+    - fish
     - flash-plugin
     - gcc
     - git

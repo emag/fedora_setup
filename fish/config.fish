@@ -1,0 +1,1 @@
+set PATH $PATH (find ~/.sdkman/**/current/bin -maxdepth 0)

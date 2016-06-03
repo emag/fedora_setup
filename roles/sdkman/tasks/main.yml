@@ -6,13 +6,13 @@
 
 - name: Install SDKMAN
   when: is_sdkman_installed.stdout == "no"
-  shell: curl -s get.sdkman.io | zsh executable=/bin/zsh
+  shell: curl -s get.sdkman.io | bash executable=/bin/bash
   become: no
 
 - name: Install maven
-  shell: source ~/.zshrc && yes | sdk install maven
+  shell: bash -lc "sdk install maven"
   become: no
 
 - name: Install gradle
-  shell: source ~/.zshrc && yes | sdk install gradle
+  shell: bash -lc "sdk install gradle"
   become: no

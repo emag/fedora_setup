@@ -6,8 +6,8 @@
     - install-from-package-manager
     - install-manually
     - services
-    - zsh
     - sdkman
+    - fish
     - vim
     - dotfiles
     - desktop
