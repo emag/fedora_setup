@@ -6,7 +6,7 @@
       command: dnf config-manager --add-repo http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
 
     - name: install VirtualBox
-      dnf: name=VirtualBox-5.0 state=installed
+      dnf: name=VirtualBox-5.1 state=installed
 
     - name: vboxdrv setup
       shell: "KERN_DIR=/usr/src/kernels/`ls -t /usr/src/kernels/ | head -1` /usr/lib/virtualbox/vboxdrv.sh setup"
