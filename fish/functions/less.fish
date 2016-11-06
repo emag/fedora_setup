@@ -1,3 +1,3 @@
 function less
-	command less -X -q -R $argv;
+  command less -i -M -q -R -X $argv;
 end
